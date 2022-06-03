@@ -1,19 +1,34 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import React, { useState } from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
 
-const Feedback = () => (
-  <h1>Give FeedBack</h1>
+const OpinionButton = (props) =>{
+
+return(
+
+<button>{props.name}</button>
 )
 
-const Statitics = () => {
-  
+} 
+
+const Feedback = () => {
   return (
-<h1>Statitics</h1>
+    <>
+      <h1>Give FeedBack</h1>
+      <OpinionButton name='Good'/>
+      <OpinionButton name='Neutral'/>
+      <OpinionButton name='Bad'/>
+    </>
+  );
+};
+
+const Statitics = () => {
+  return (
+  <>
+  <h1>Statitics</h1>
+  </>
   )
-}
-
-
+};
 
 function App() {
   // save clicks of each button to its own state
@@ -29,10 +44,9 @@ function App() {
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
 );
-
