@@ -5,6 +5,7 @@ import "./index.css";
 const App = (props) => {
   const [selected, setSelected] = useState(0);
   const [mostVoted, setMostVoted] = useState(0);
+  const [topPoints, setTopPoints] = useState(0);
 
   const handleClick = () => {
     //generador de numeros random (se usa al hacer click)
@@ -23,7 +24,7 @@ const App = (props) => {
     newPoints[selected]++;
     points = newPoints;
     setMostVoted(points.indexOf(Math.max(...points)));
-    console.log(points);
+    setTopPoints(points[mostVoted]);
   };
 
   return (
@@ -33,7 +34,7 @@ const App = (props) => {
         {props.anecdotes[selected]}
         <div>
           <button style={{ marginTop: "10px" }} onClick={handleClick}>
-            Next anecdote
+            Next Anecdote
           </button>
           <button
             style={{ marginTop: "10px", marginLeft: "10px" }}
@@ -42,8 +43,9 @@ const App = (props) => {
             Vote Anecdote
           </button>
         </div>
-        <h1> Anecdote with most votes</h1>
-        {props.anecdotes[mostVoted]}
+        <h1> Anecdote with most votes</h1>"{props.anecdotes[mostVoted]}"<br />
+        <br />
+        Number of Votes: {topPoints}
       </div>
     </div>
   );
