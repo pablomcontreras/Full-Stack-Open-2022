@@ -23,9 +23,14 @@ const Feedback = (props) => {
 
 const Statitic = (props) => {
   return (
-    <li>
-      {props.name}: {props.value}
-    </li>
+    <>
+    <td>
+      {props.name}
+    </td>
+        <td>
+       {props.value}
+      </td>
+      </>
   );
 };
 
@@ -47,15 +52,33 @@ const Statitics = (props) => {
     return (
       <>
         <h1>Statitics</h1>
-        <ul>
+        <table>
+          <tbody>
+          <tr>
           <Statitic name="Good" value={props.good} />
+          </tr>
+          <tr>
           <Statitic name="Neutral" value={props.neutral} />
+          </tr>
+          <tr>
           <Statitic name="Bad" value={props.bad} />
+          </tr>
+          </tbody>
+        </table>
           <hr></hr>
+          <table>
+          <tbody>
+          <tr>
           <Statitic name="Total" value={total} />
+          </tr>
+          <tr>
           <Statitic name="Average" value={promedioPuntuacion} />
+          </tr>
+          <tr>
           <Statitic name="Positive Ratings" value={promedioPositivo} />
-        </ul>
+          </tr>
+          </tbody>
+        </table>
       </>
     );
   }
