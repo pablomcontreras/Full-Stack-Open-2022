@@ -4,8 +4,7 @@ import "./index.css";
 
 const App = (props) => {
   const [selected, setSelected] = useState(0);
-  let votos = new Uint8Array(props.anecdotes.length);
-  const copiar = [...votos];
+  const [mostVoted, setMostVoted] = useState(0);
 
   const handleClick = () => {
     //generador de numeros random (se usa al hacer click)
@@ -19,25 +18,32 @@ const App = (props) => {
     }
   };
 
-  const handleClickVote = () => {};
+  const handleClickVote = () => {
+    const newPoints = [...points];
+    newPoints[selected]++;
+    points = newPoints;
+    setMostVoted(points.indexOf(Math.max(...points)));
+    console.log(points);
+  };
 
   return (
     <div style={{ marginLeft: "10px" }}>
       <div style={{ marginTop: "10px" }}>
+        <h1> Anecdote of the day</h1>
         {props.anecdotes[selected]}
         <div>
           <button style={{ marginTop: "10px" }} onClick={handleClick}>
-            {" "}
             Next anecdote
           </button>
           <button
             style={{ marginTop: "10px", marginLeft: "10px" }}
             onClick={handleClickVote}
           >
-            {" "}
             Vote Anecdote
           </button>
         </div>
+        <h1> Anecdote with most votes</h1>
+        {props.anecdotes[mostVoted]}
       </div>
     </div>
   );
@@ -51,6 +57,8 @@ const anecdotes = [
   "Premature optimization is the root of all evil.",
   "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
 ];
+
+let points = new Uint8Array(anecdotes.length);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
