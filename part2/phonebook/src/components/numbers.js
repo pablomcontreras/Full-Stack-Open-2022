@@ -8,7 +8,7 @@ const Numbers = (persons) => {
         <ul>
           {persons.persons.map((person) => (
             <li key={person.name}>
-              {person.name}, {person.phone}
+              {person.name}, {person.number}
             </li>
           ))}
         </ul>

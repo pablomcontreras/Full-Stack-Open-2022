@@ -1,33 +1,41 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 
-const Busqueda = ({ persons }) => {
+const Busqueda = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-
-  const handleSearchInput = (e) => {
-    setSearchTerm(e.target.value);
+  const handleSearchInput = (event) => {
+    setSearchTerm(event.target.value);
   };
   const doSearch = (e) => {
     e.preventDefault();
-    if (persons.filter((e) => e.name === searchTerm)) {
-      return console.log("Hay coincidencia: ", e.name);
-    } else {
-      return console.log("No hay coincidencia para el termino: ", e.name);
-    }
+    let result = props.persons.filter((e) => e.name === searchTerm);
+    //console.log('La variable Results tiene: ', result);
+    setSearchResults(result.map((e) => `${e.name}: ${e.number}`));
   };
+
 
   return (
     <>
-      <div>debug de SearchTerm: {searchTerm} </div>
-      <h2>Busqueda</h2>
+      <h2>Search</h2>
       <form onSubmit={doSearch}>
         <div>
-          Name: <input value={searchTerm} onChange={handleSearchInput} />
+          Name:{" "}
+          <input
+            value={searchTerm}
+            onChange={(event) => handleSearchInput(event)}
+          />
         </div>
         <div>
           <button type="submit">Search</button>
         </div>
-        <div style={{ marginTop: "10px" }}> Resultados: {searchResults}</div>
+        <div style={{ marginTop: "10px" }}>
+          {" "}
+          Results:{" "} 
+          <hr></hr>
+          {searchResults.length < 1
+            ? "No coincidence"
+            : searchResults}{" "}
+        </div>
       </form>
     </>
   );
