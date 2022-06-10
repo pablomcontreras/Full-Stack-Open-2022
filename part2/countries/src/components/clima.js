@@ -20,7 +20,7 @@ export const Clima = ({country}) => {
              }).catch(error => {
                console.log(error);
              });
-       }, [capital]);
+       }, [capital, apiKey]);
     
 //console.log('objeto Weather tiene:' , weather)
 
