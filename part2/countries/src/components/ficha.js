@@ -1,4 +1,5 @@
 import React from "react";
+import { Clima } from "./clima";
 
 export const Ficha = ({ country, searchResults, handleClick }) => {
   //console.log("Props de ficha(country)", country);
@@ -10,16 +11,11 @@ export const Ficha = ({ country, searchResults, handleClick }) => {
     return "No matches found";
   } else if (searchResults.length >= 2 && searchResults.length <= 10) {
     //CUANDO HAY HASTA 10 RESULTADOS
-    
-    return searchResults.map((e) => {
+    const listaResultados =  searchResults.map((e) => <li key={e}>{e} <button onClick={() => handleClick(e)}>Show</button></li>);
    
       return (
-      <ul style={{ marginLeft: "10px" }}>
-        <li key={e}>
-          {e} <button onClick={() => handleClick(e)}>Show</button>
-        </li>
+      <ul style={{ marginLeft: "10px" }}>{listaResultados}
       </ul>
-    )}
     );
   } else if (searchResults.length === 1) {
     //CUANDO HAY SOLO UN RESULTADO
@@ -36,6 +32,7 @@ export const Ficha = ({ country, searchResults, handleClick }) => {
           <ul>{idiomas}</ul>
           <img alt="flag" src={country.flags.png}></img>
         </div>
+        <div> <Clima country={country}/></div>
       </>
     );
   }
